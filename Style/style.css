@@ -42,3 +42,11 @@
 .products_img {
   margin-bottom: 30px;
 }
+
+.products_card_price {
+margin-right: 150px;
+}
+
+.products_card_cost {
+text-align: right;
+}
