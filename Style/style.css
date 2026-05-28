@@ -1,5 +1,5 @@
 .main_font {
-  font-family: Arial, 'Montserrat', sans-serif;
+  font-family: 'Montserrat', Arial, sans-serif;
   color: #515076;
 }
 
@@ -45,9 +45,9 @@
 }
 
 .products_card_price {
-margin-right: 150px;
+  margin-right: 150px;
 }
 
 .products_card_cost {
-text-align: right;
+  text-align: right;
 }
