@@ -37,16 +37,17 @@
   font-size: 12px;
   line-height: 24px;
   color: #A5A3B9;
-  }
+}
 
 .products_img {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .products_card_price {
-margin-right: 150px;
+  margin-right: 150px;
 }
 
 .products_card_cost {
-text-align: right;
+  text-align: right;
 }
