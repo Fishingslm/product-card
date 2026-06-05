@@ -1,5 +1,5 @@
 .main_font {
-  font-family: 'Montserrat', Arial, sans-serif;
+  font-family: Montserrat, Arial, sans-serif;
   color: #515076;
 }
 
@@ -13,35 +13,52 @@
 }
 
 .products_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  font-size: 13px;
+  width: 1110px;
+}
 
+.background_img {
+  background-image: url(/images/background_dandelions.png);
+  background-repeat: no-repeat;
+}
+
+.compaund {
+  padding-inline-start: 13px;
 }
 
 .main_text {
   color: #515076;
   line-height: 18px;
-  margin: 0;
 }
 
 .products_card {
-  width: 340px;
-  height: 573px;
+  width: 290px;
   background-color: #F7F7FA;
   padding: 25px;
-  font-size: 13px;
+  margin: 25px;
 }
 
 .purpose {
   font-size: 12px;
   line-height: 24px;
   color: #A5A3B9;
+  text-transform: uppercase;
 }
 
 .products_img {
-  margin-bottom: 30px;
-  text-align: center;
+  width: 290;
+  height: 245;
+}
+
+.products_card_sell {
+  margin-top: 25px;
 }
 
 .products_card_price {
