@@ -25,7 +25,7 @@
 }
 
 .background_img {
-  background-image: url(/images/background_dandelions.png);
+  background-image: url('/images/background_dandelions.png');
   background-repeat: no-repeat;
 }
 
