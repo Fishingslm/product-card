@@ -1,7 +1,22 @@
-.main_font {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
   font-family: Montserrat, Arial, sans-serif;
   color: #515076;
+  font-size: 13px;
+  line-height: 18px;
 }
+
+.page__container {   
+  background-image: url('/images/background_dandelions.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  padding-top: 1px;
+} 
 
 .title {
   font-size: 70px;
@@ -12,59 +27,86 @@
   color: #515076;
 }
 
-.products_list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  justify-content: center;
+.page__title {   
+margin-top: 220px;
+margin-bottom: 110px;
+} 
+
+.clear-list {
   list-style: none;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
-  font-size: 13px;
-  width: 1110px;
 }
 
-.background_img {
-  background-image: url('/images/background_dandelions.png');
-  background-repeat: no-repeat;
-}
-
-.compaund {
-  padding-inline-start: 13px;
-}
-
-.main_text {
-  color: #515076;
-  line-height: 18px;
-}
-
-.products_card {
-  width: 290px;
+.card {
+  box-sizing: border-box;
+  width: 100%;
   background-color: #F7F7FA;
   padding: 25px;
-  margin: 25px;
 }
 
-.purpose {
+.card__img {
+  display: block;
+}
+
+.card__category {
+  display: block;
+  margin-top: 20px;
   font-size: 12px;
-  line-height: 24px;
+  line-height: 32px;
   color: #A5A3B9;
   text-transform: uppercase;
 }
 
-.products_img {
-  width: 290;
-  height: 245;
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 45px;
+  justify-content: center;
 }
 
-.products_card_sell {
+.container {
+  margin: 0 auto;
+  width: 1110px;
+}
+
+.products__item {
+  width: 340px;
+  margin: 0;
+}
+
+.card__name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #515076;
+}
+
+.card__description {
+  line-height: 18px;
+}
+
+.compound {
+  line-height: 18px;
+}
+
+.compound__name {
+  display: block;
+  margin-bottom: 0px;
+}
+
+.compound__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card__compound {
+  line-height: 18px;
+}
+
+.card__price {
+  display: flex;
+  justify-content: space-between;
   margin-top: 25px;
-}
-
-.products_card_price {
-  margin-right: 150px;
-}
-
-.products_card_cost {
-  text-align: right;
+  font-size: 20px;
 }
