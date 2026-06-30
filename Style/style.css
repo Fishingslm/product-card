@@ -110,3 +110,7 @@ body {
   margin-top: 25px;
   font-size: 20px;
 }
+
+.switch-color-button--active {
+  background-color: #0cea00;
+}
