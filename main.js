@@ -1,5 +1,4 @@
 // изменение цвета первой карточки по клику на кнопку
-
 const productCard = document.querySelector('.products__item.card');
 const changeCardColorButton = document.querySelector('#change-card-color-button');
 
@@ -8,7 +7,6 @@ changeCardColorButton.addEventListener('click', () => {
 });
 
 // изменение цвета всех карточек по клику на кнопку
-
 const allProductCards = document.querySelectorAll('.products__item.card');
 const changeAllCardColorButton = document.querySelector('#change-all-cards-color-button');
 
@@ -17,7 +15,6 @@ changeAllCardColorButton.addEventListener('click', () => {
 });
 
 // открыть google в новом окне по клику на кнопку
-
 const openGoogleButton = document.querySelector('#open-google-button');
 
 openGoogleButton.addEventListener('click', openGoogle);
@@ -32,7 +29,6 @@ function openGoogle() {
 }
 
 //вывод в консоль лог
-
 const outputLogButton = document.querySelector('#output-console-log');
 
 outputLogButton.addEventListener('click', () => outputConsoleLog('ДЗ №6'))
@@ -43,7 +39,6 @@ function outputConsoleLog(message) {
 }
 
 //Вывод текста заголовка в консоль при наведении курсора мыши
-
 const title = document.querySelector('.title.page__title');
 
 title.addEventListener('mouseover', () => {
