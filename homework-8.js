@@ -129,12 +129,14 @@ console.log(uniteBooks);
 // 2000 года, устанавливаем true (да, это редкий), нет - false (значит
 // это не редкий).
 
-let addRareBooks = uniteBooks.map(function (book) {
-  return {
-    ...book,
-    isRare: book.
-      year < 1850
-  };
-});
+function addRareBooks(books) {
+  if (books.year > 1987) {
+    books.isRare = true;
+  } else {
+    books.isRare = false;
+  }
+  return books;
+}
+const updatedBooks = uniteBooks.map(addRareBooks);
 
-console.log(addRareBooks);
+console.log(updatedBooks);
