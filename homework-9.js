@@ -27,11 +27,10 @@ console.log(commentsWithCom);
 
 // 8. Перебрать массив таким образом, что бы пользователи с id меньше или равно 5 имели postId: 2, а те, у кого id больше 5, имели postId: 1
 const updatedComments = comments.map(comment => {
-  if (comment.id <= 5) {
-    return { ...comment, postId: 2 };
-  } else {
-    return { ...comment, postId: 1 };
-  }
+  return {
+    ...comment,
+    postId: comment.id <= 5 ? 2 : 1
+  };
 });
 
 console.log(updatedComments);
@@ -47,14 +46,14 @@ const simplifiedComments = comments.map(comment => {
 console.log(simplifiedComments);
 
 // 10. Перебираем массив, добавляем объектам свойство isInvalid и проверяем: если длина тела сообщения (body) больше 180 символов - устанавливаем true, меньше - false.
-const commentsWithInvalidFlag = comments.map(comment => {
+const validatedComments = comments.map(comment => {
   return {
     ...comment,
     isInvalid: comment.body.length > 180
   };
 });
 
-console.log(commentsWithInvalidFlag);
+console.log(validatedComments);
 
 // 11. Почитать про метод массива reduce. Используя его, вывести массив почт и провернуть тоже самое с помощью метода map
 const emails = comments.reduce((acc, comment) => {
