@@ -69,5 +69,7 @@ const emailsWithMap = comments.map(comment => comment.email);
 console.log(emailsWithMap);
 
 // 12. Почитать про методы toString(), join() и перебрав массив с задания №11, привести его к строке.
+const emailsStringWithToString = emails.toString();
+console.log(emailsStringWithToString);
 const emailsString = emails.join(', ');
 console.log(emailsString);
