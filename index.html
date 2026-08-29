@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Product Cards</title>
   <link rel="stylesheet" href="style/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +21,9 @@
       <button id="open-google-button">Открыть страницу Google.com</button>
       <button id="output-console-log">Вывести сообщение в консоль лог</button>
       <button id="switch-color-button">Переключить цвет кнопки</button>
+      <button type="button" id="open-registration-button">
+        Регистрация
+      </button>
       <ul class="products clear-list">
         <li class="products__item card">
           <img class="card__img" src="images/moisturizing_mousse.png" alt="Товар увлажняющий мусс" />
@@ -115,11 +118,153 @@
       </ul>
     </div>
   </main>
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__about">
+        <a class="footer__logo" href="#">Product Cards</a>
+        <p class="footer__description">У нас самые лучшие продукты для кожи!</p>
+        <nav class="footer__socials">
+          <ul class="footer__social-list clear-list">
+            <li>
+              <a class="footer__social-link" href="#">
+                <img
+                  class="footer__social-icon footer__social-icon--telegram"
+                  src="images/icon_tg.svg"
+                  alt="Telegram"
+                >
+              </a>
+            </li>
+            <li>
+              <a class="footer__social-link" href="#">
+                <img
+                  class="footer__social-icon footer__social-icon--vk"
+                  src="images/icon_vk.svg"
+                  alt="ВКонтакте"
+                >
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <form class="subscription-form" id="subscription-form">
+        <label class="subscription-form__label" for="subscription-email">
+          Подпишись на наши акции:
+        </label>
+        <div class="subscription-form__controls">
+          <input
+            class="subscription-form__input"
+            id="subscription-email"
+            name="email"
+            type="email"
+            placeholder="Введи Email..."
+            required
+          >
+          <button class="subscription-form__button" type="submit">Подписаться</button>
+        </div>
+      </form>
+
+      <nav class="footer__navigation">
+        <h2 class="footer__navigation-title">Быстрые ссылки</h2>
+        <ul class="footer__navigation-list clear-list">
+          <li><a href="#">Главная</a></li>
+          <li><a href="#">Магазин</a></li>
+          <li><a href="#">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__copyright">
+        <span class="footer__copyright-line"></span>
+        <p>www.product-cards.com © All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="registration-modal">
+    <div class="overlay"></div>
+    <div class="modal__content">
+      <button class="modal__close-button" type="button" id="close-registration-button">
+        &times;
+      </button>
+      <h2 class="modal__title" id="registration-title">Регистрация</h2>
+
+      <form class="registration-form" id="registration-form" novalidate>
+        <label class="registration-form__field" for="first-name">
+          <span>Имя</span>
+          <input
+            id="first-name"
+            name="firstName"
+            type="text"
+            placeholder="Например, Анна"
+            minlength="2"
+            required
+          >
+        </label>
+
+        <label class="registration-form__field" for="last-name">
+          <span>Фамилия</span>
+          <input
+            id="last-name"
+            name="lastName"
+            type="text"
+            placeholder="Например, Иванова"
+            minlength="2"
+            required
+          >
+        </label>
+
+        <label class="registration-form__field" for="birth-date">
+          <span>Дата рождения</span>
+          <input id="birth-date" name="birthDate" type="date" required>
+        </label>
+
+        <label class="registration-form__field" for="login">
+          <span>Логин</span>
+          <input
+            id="login"
+            name="login"
+            type="text"
+            placeholder="От 4 до 20 символов"
+            minlength="4"
+            required
+          >
+        </label>
+
+        <label class="registration-form__field" for="password">
+          <span>Пароль</span>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Не менее 8 символов"
+            minlength="8"
+            required
+          >
+        </label>
+
+        <label class="registration-form__field" for="password-repeat">
+          <span>Повторите пароль</span>
+          <input
+            id="password-repeat"
+            name="passwordRepeat"
+            type="password"
+            placeholder="Введите пароль ещё раз"
+            minlength="8"
+            required
+          >
+        </label>
+
+        <button class="registration-form__submit" type="submit">Зарегистрироваться</button>
+      </form>
+    </div>
+  </div>
+
   <script src="main.js"></script>
   <script src="homework-7.js"></script>
   <script src="homework-8.js"></script>
   <script type="module" src="homework-9.js"></script>
   <script type="module" src="comments.js"></script>
   <script type="module" src="homework-10.js"></script>
+  <script src="homework-11.js"></script>
 </body>
 </html>
