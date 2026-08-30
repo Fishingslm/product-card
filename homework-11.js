@@ -1,15 +1,8 @@
 const subscriptionForm = document.querySelector("#subscription-form");
-const subscriptionEmailInput = document.querySelector("#subscription-email");
 const registrationButton = document.querySelector("#open-registration-button");
 const registrationModal = document.querySelector("#registration-modal");
 const closeRegistrationButton = document.querySelector("#close-registration-button");
 const registrationForm = document.querySelector("#registration-form");
-const firstNameInput = document.querySelector("#first-name");
-const lastNameInput = document.querySelector("#last-name");
-const birthDateInput = document.querySelector("#birth-date");
-const loginInput = document.querySelector("#login");
-const passwordInput = document.querySelector("#password");
-const passwordRepeatInput = document.querySelector("#password-repeat");
 
 let user;
 
@@ -17,9 +10,8 @@ let user;
 subscriptionForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const subscription = {
-    email: subscriptionEmailInput.value,
-  };
+  const formData = new FormData(subscriptionForm);
+  const subscription = Object.fromEntries(formData);
 
   console.log(subscription);
 });
@@ -45,18 +37,16 @@ registrationForm.addEventListener("submit", (event) => {
     return;
   }
 
-  if (passwordInput.value !== passwordRepeatInput.value) {
+  const formData = new FormData(registrationForm);
+  const registrationData = Object.fromEntries(formData);
+
+  if (registrationData.password !== registrationData.passwordRepeat) {
     alert("Регистрация отклонена. Пароли не совпадают.");
     return;
   }
 
   user = {
-    firstName: firstNameInput.value,
-    lastName: lastNameInput.value,
-    birthDate: birthDateInput.value,
-    login: loginInput.value,
-    password: passwordInput.value,
-    passwordRepeat: passwordRepeatInput.value,
+    ...registrationData,
     createdOn: new Date(),
   };
 
