@@ -1,21 +1,16 @@
 // изменение цвета первой карточки по клику на кнопку
+const productCard = document.querySelector('.products__item.card');
 const changeCardColorButton = document.querySelector('#change-card-color-button');
 
 changeCardColorButton.addEventListener('click', () => {
-  const productCard = document.querySelector('.products__item.card');
-
-  if (!productCard) {
-    return;
-  }
-
   productCard.style.backgroundColor = 'red';
 });
 
 // изменение цвета всех карточек по клику на кнопку
+const allProductCards = document.querySelectorAll('.products__item.card');
 const changeAllCardColorButton = document.querySelector('#change-all-cards-color-button');
 
 changeAllCardColorButton.addEventListener('click', () => {
-  const allProductCards = document.querySelectorAll('.products__item.card');
   allProductCards.forEach((card) => card.style.backgroundColor = 'blue');
 });
 

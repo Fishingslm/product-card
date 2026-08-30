@@ -19,16 +19,16 @@ const getCardsCount = () => {
 const renderProductCards = (products) => {
   products.forEach((product) => {
     const productClone = productCardTemplate.content.cloneNode(true);
-    const imageSrc = `images/${product.image}.png`;
-    const compoundList = productClone.querySelector(".compound__list");
+    const imageSrc = `/images/${product.image}.png`;
+    const compoundList = productClone.querySelector(".card__compound");
     const price = `${product.price} \u20BD`;
 
-    productClone.querySelector(".card__img").src = imageSrc;
-    productClone.querySelector(".card__img").alt = product.title;
+    productClone.querySelector(".card__picture").src = imageSrc;
+    productClone.querySelector(".card__picture").alt = product.title;
     productClone.querySelector(".card__category").textContent =
       product.category;
-    productClone.querySelector(".card__name").textContent = product.title;
-    productClone.querySelector(".card__description").textContent = product.description;
+    productClone.querySelector(".card__title").textContent = product.title;
+    productClone.querySelector(".card__desc").textContent = product.description;
 
     product.compoundList.forEach((item) => {
       const listItem = document.createElement("li");
