@@ -43,7 +43,9 @@ const renderProductCards = (products) => {
   });
 };
 
-renderProductCards(products.slice(0, getCardsCount()));
+if (productCardTemplate && productsList) {
+  renderProductCards(products.slice(0, getCardsCount()));
+}
 
 const productsWithTitleAndDesc = products.reduce((result, product) => {
   result.push({
