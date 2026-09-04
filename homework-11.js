@@ -1,44 +1,37 @@
-const subscriptionForm = document.querySelector("#subscription-form");
+import { Form } from "./Form.js";
+import { Modal } from "./Modal.js";
+
+const subscriptionForm = new Form("subscription-form");
 const registrationButton = document.querySelector("#open-registration-button");
-const registrationModal = document.querySelector("#registration-modal");
-const closeRegistrationButton = document.querySelector("#close-registration-button");
-const registrationForm = document.querySelector("#registration-form");
+const registrationModal = new Modal("registration-modal");
+const registrationForm = new Form("registration-form");
 
 let user;
 
 // Форма подписки
-subscriptionForm.addEventListener("submit", (event) => {
+subscriptionForm.formElement.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const formData = new FormData(subscriptionForm);
-  const subscription = Object.fromEntries(formData);
+  const subscription = subscriptionForm.getValues();
 
   console.log(subscription);
 });
 
 // Открытие и закрытие модального окна
-const openModal = () => {
-  registrationModal.classList.add("modal-showed");
-};
-
-const closeModal = () => {
-  registrationModal.classList.remove("modal-showed");
-};
-
-registrationButton.addEventListener("click", openModal);
-closeRegistrationButton.addEventListener("click", closeModal);
+registrationButton.addEventListener("click", () => {
+  registrationModal.open();
+});
 
 // Форма регистрации
-registrationForm.addEventListener("submit", (event) => {
+registrationForm.formElement.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  if (!registrationForm.checkValidity()) {
+  if (!registrationForm.isValid()) {
     alert("Регистрация отклонена. Проверьте правильность заполнения полей.");
     return;
   }
 
-  const formData = new FormData(registrationForm);
-  const registrationData = Object.fromEntries(formData);
+  const registrationData = registrationForm.getValues();
 
   if (registrationData.password !== registrationData.passwordRepeat) {
     alert("Регистрация отклонена. Пароли не совпадают.");
@@ -51,5 +44,6 @@ registrationForm.addEventListener("submit", (event) => {
   };
 
   console.log(user);
-  closeModal();
+  registrationForm.reset();
+  registrationModal.close();
 });
