@@ -1,3 +1,14 @@
+import "./comments.js";
+import "./product-cards.js";
+import "./homework-7.js";
+import "./homework-8.js";
+import "./homework-9.js";
+import "./homework-10.js";
+import "./Form.js";
+import "./Modal.js";
+import "./homework-11.js";
+import "./homework-12.js";
+
 // изменение цвета первой карточки по клику на кнопку
 const productCard = document.querySelector('.products__item.card');
 const changeCardColorButton = document.querySelector('#change-card-color-button');
