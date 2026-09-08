@@ -8,6 +8,7 @@ import "./Form.js";
 import "./Modal.js";
 import "./homework-11.js";
 import "./homework-12.js";
+import "./homework-13.js";
 
 // изменение цвета первой карточки по клику на кнопку
 const productCard = document.querySelector('.products__item.card');
