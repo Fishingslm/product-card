@@ -5,12 +5,12 @@ export class Modal {
     this.shouldCloseOnOverlay = shouldCloseOnOverlay;
     this.handleOverlayClick = this.close.bind(this);
     this.#initOpen(buttonId);
-    this.#initClose();
   }
 
   open() {
     this.modal.classList.add('modal-showed');
     this.overlay.classList.add('overlay-showed');
+    this.#initClose();
     if (this.shouldCloseOnOverlay) {
       this.overlay.addEventListener('click', this.handleOverlayClick);
     }
