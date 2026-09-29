@@ -1,0 +1,9 @@
+{
+  "users": [
+    { "id": 1, "name": "Анна", "surname": "Иванова", "email": "anna@example.com", "age": 25 },
+    { "id": 2, "name": "Илья", "surname": "Петров", "email": "ilya@example.com", "age": 31 },
+    { "id": 3, "name": "Мария", "surname": "Соколова", "email": "maria@example.com", "age": 28 },
+    { "id": 4, "name": "Денис", "surname": "Орлов", "email": "denis@example.com", "age": 35 },
+    { "id": 5, "name": "Ольга", "surname": "Морозова", "email": "olga@example.com", "age": 24 }
+  ]
+}

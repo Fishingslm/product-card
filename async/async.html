@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ДЗ №15 — Асинхронная загрузка пользователей</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+      color: #1e293b;
+      background: #f1f5f9;
+    }
+    main { width: 100%; max-width: 1000px; text-align: center; }
+    h1 { margin-top: 0; }
+    .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    button {
+      padding: 12px 18px;
+      border: 1px solid #1d4ed8;
+      border-radius: 8px;
+      font: inherit;
+      cursor: pointer;
+      color: #fff;
+      background: #1d4ed8;
+    }
+    button:disabled { opacity: 0.5; cursor: wait; }
+    button:focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
+    .delete-button { background: #fff; color: #9f1239; border-color: #9f1239; }
+    #status { min-height: 24px; margin: 24px 0; }
+    #status.error { color: #b91c1c; }
+    .initial-loading h1, .initial-loading .controls { display: none; }
+    .users-list {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      list-style: none;
+    }
+    .user-card {
+      width: 280px;
+      max-width: 100%;
+      padding: 20px;
+      text-align: left;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      background: #fff;
+      overflow-wrap: anywhere;
+    }
+    .user-card h2 { font-size: 20px; margin: 0 0 16px; }
+    .user-card p { margin: 12px 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Пользователи</h1>
+    <div class="controls">
+      <button type="button" id="get-all-button" disabled>Получить все карточки</button>
+      <button type="button" id="delete-all-button" class="delete-button" disabled>Удалить все карточки</button>
+    </div>
+    <p id="status" role="status" aria-live="polite"></p>
+    <ul id="users-list" class="users-list" aria-label="Список пользователей"></ul>
+  </main>
+
+  <template id="user-template">
+    <li class="user-card">
+      <h2 class="user-name"></h2>
+      <p>ID: <span class="user-id"></span></p>
+      <p>Email: <span class="user-email"></span></p>
+      <p>Возраст: <span class="user-age"></span></p>
+      <button type="button" class="delete-button">Удалить карточку</button>
+    </li>
+  </template>
+
+  <script type="module" src="./async.js"></script>
+</body>
+</html>
