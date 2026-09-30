@@ -1,6 +1,7 @@
 const STORAGE_KEY = "homework-15-users";
 const TOTAL_COUNT_KEY = "homework-15-total-count";
 
+const mainElement = document.querySelector("main");
 const usersList = document.querySelector("#users-list");
 const userTemplate = document.querySelector("#user-template");
 const statusElement = document.querySelector("#status");
@@ -9,11 +10,35 @@ const deleteAllButton = document.querySelector("#delete-all-button");
 
 let isLoading = false;
 
+function getSavedUsers() {
+  const savedUsers = localStorage.getItem(STORAGE_KEY);
+  if (savedUsers === null) return null;
+
+  const users = JSON.parse(savedUsers);
+  if (!Array.isArray(users)) {
+    throw new Error("В хранилище должен находиться массив пользователей");
+  }
+
+  return users;
+}
+
+function saveUsers(users) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+}
+
+function fetchWithDelay(url) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      fetch(url).then(resolve).catch(reject);
+    }, 2000);
+  });
+}
+
 function setLoading(value) {
   isLoading = value;
 
   // При первой загрузке оставляем по центру только сообщение.
-  document.querySelector("main").classList.toggle(
+  mainElement.classList.toggle(
     "initial-loading",
     value && usersList.children.length === 0
   );
@@ -28,6 +53,7 @@ function renderUsers(users) {
 
   users.forEach((user) => {
     const card = userTemplate.content.cloneNode(true);
+    const cardElement = card.querySelector(".user-card");
 
     card.querySelector(".user-name").textContent = `${user.name} ${user.surname}`;
     card.querySelector(".user-id").textContent = user.id;
@@ -36,7 +62,7 @@ function renderUsers(users) {
 
     const deleteButton = card.querySelector(".delete-button");
     deleteButton.addEventListener("click", () => {
-      deleteUser(user.id);
+      deleteUser(user.id, cardElement);
     });
 
     usersList.appendChild(card);
@@ -50,11 +76,7 @@ async function loadUsers() {
   statusElement.textContent = "Данные загружаются";
 
   try {
-    await new Promise((resolve) => {
-      setTimeout(resolve, 2000);
-    });
-
-    const response = await fetch("./users.json");
+    const response = await fetchWithDelay("./users.json");
 
     if (!response.ok) {
       throw new Error(`Ошибка при загрузке данных: HTTP ${response.status}`);
@@ -66,7 +88,7 @@ async function loadUsers() {
       throw new Error("В файле отсутствует массив users");
     }
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data.users));
+    saveUsers(data.users);
     localStorage.setItem(TOTAL_COUNT_KEY, String(data.users.length));
 
     renderUsers(data.users);
@@ -82,15 +104,15 @@ async function loadUsers() {
   }
 }
 
-function deleteUser(id) {
+function deleteUser(id, cardElement) {
   if (isLoading) return;
 
   try {
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const users = getSavedUsers();
     const remainingUsers = users.filter((user) => user.id !== id);
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(remainingUsers));
-    renderUsers(remainingUsers);
+    saveUsers(remainingUsers);
+    cardElement.remove();
 
     statusElement.textContent = "Карточка удалена";
     if (remainingUsers.length === 0) {
@@ -106,14 +128,12 @@ function deleteAllUsers() {
   if (isLoading) return;
 
   try {
-    const savedUsers = localStorage.getItem(STORAGE_KEY);
+    const users = getSavedUsers();
 
-    if (savedUsers === null) {
+    if (users === null) {
       statusElement.textContent = "Нет карточек для удаления";
       return;
     }
-
-    const users = JSON.parse(savedUsers);
 
     if (users.length === 0) {
       statusElement.textContent = "Все карточки уже удалены";
@@ -121,7 +141,7 @@ function deleteAllUsers() {
     }
 
     // Пустой список сохраняем: после перезагрузки он остаётся пустым.
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+    saveUsers([]);
     renderUsers([]);
     statusElement.textContent = "Все карточки удалены";
   } catch (error) {
@@ -151,17 +171,11 @@ function getAllUsers() {
 
 function initialize() {
   try {
-    const savedUsers = localStorage.getItem(STORAGE_KEY);
+    const users = getSavedUsers();
 
-    if (savedUsers === null) {
+    if (users === null) {
       loadUsers();
       return;
-    }
-
-    const users = JSON.parse(savedUsers);
-
-    if (!Array.isArray(users)) {
-      throw new Error("В хранилище должен находиться массив пользователей");
     }
 
     renderUsers(users);
