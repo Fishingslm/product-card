@@ -26,14 +26,6 @@ function saveUsers(users) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
 }
 
-function fetchWithDelay(url) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      fetch(url).then(resolve).catch(reject);
-    }, 2000);
-  });
-}
-
 function setLoading(value) {
   isLoading = value;
 
@@ -69,39 +61,41 @@ function renderUsers(users) {
   });
 }
 
-async function loadUsers() {
+function loadUsers() {
   if (isLoading) return;
 
   setLoading(true);
   statusElement.textContent = "Данные загружаются";
 
-  try {
-    const response = await fetchWithDelay("./users.json");
+  setTimeout(async () => {
+    try {
+      const response = await fetch("./users.json");
 
-    if (!response.ok) {
-      throw new Error(`Ошибка при загрузке данных: HTTP ${response.status}`);
+      if (!response.ok) {
+        throw new Error(`Ошибка при загрузке данных: HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (!Array.isArray(data.users)) {
+        throw new Error("В файле отсутствует массив users");
+      }
+
+      saveUsers(data.users);
+      localStorage.setItem(TOTAL_COUNT_KEY, String(data.users.length));
+
+      renderUsers(data.users);
+      statusElement.textContent = "";
+      if (data.users.length === 0) {
+        statusElement.textContent = "В файле нет пользователей";
+      }
+    } catch (error) {
+      statusElement.textContent = "Ошибка при загрузке данных";
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-
-    const data = await response.json();
-
-    if (!Array.isArray(data.users)) {
-      throw new Error("В файле отсутствует массив users");
-    }
-
-    saveUsers(data.users);
-    localStorage.setItem(TOTAL_COUNT_KEY, String(data.users.length));
-
-    renderUsers(data.users);
-    statusElement.textContent = "";
-    if (data.users.length === 0) {
-      statusElement.textContent = "В файле нет пользователей";
-    }
-  } catch (error) {
-    statusElement.textContent = "Ошибка при загрузке данных";
-    console.error(error);
-  } finally {
-    setLoading(false);
-  }
+  }, 2000);
 }
 
 function deleteUser(id, cardElement) {
