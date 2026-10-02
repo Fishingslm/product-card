@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ДЗ №15 — Асинхронная загрузка пользователей</title>
+  <link rel="stylesheet" href="./async.css">
+</head>
+<body>
+  <main>
+    <h1>Пользователи</h1>
+    <div class="controls">
+      <button type="button" id="get-all-button" disabled>Получить все карточки</button>
+      <button type="button" id="delete-all-button" class="delete-button" disabled>Удалить все карточки</button>
+    </div>
+    <p id="status" role="status" aria-live="polite"></p>
+    <ul id="users-list" class="users-list" aria-label="Список пользователей"></ul>
+  </main>
+
+  <template id="user-template">
+    <li class="user-card">
+      <h2 class="user-name"></h2>
+      <p>ID: <span class="user-id"></span></p>
+      <p>Email: <span class="user-email"></span></p>
+      <p>Возраст: <span class="user-age"></span></p>
+      <button type="button" class="delete-button">Удалить карточку</button>
+    </li>
+  </template>
+
+  <script type="module" src="./async.js"></script>
+</body>
+</html>
